@@ -1,0 +1,14 @@
+{% extends "basic.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+  <form action="{% url 'index' %}" method="post">
+    {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+      {% bootstrap_form form %}
+
+    <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+  </form>
+{% endblock %}
