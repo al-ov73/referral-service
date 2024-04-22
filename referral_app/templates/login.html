@@ -2,7 +2,7 @@
 {% block content %}
 
 <p>Please login</p>
-  <form action="{% url 'profile_show' %}" method="post">
+  <form action="{% url 'users_show' %}" method="post">
     {% csrf_token %}
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 

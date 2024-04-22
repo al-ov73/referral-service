@@ -20,9 +20,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app',
+    'referral_app',
     'django_bootstrap5',
-     "phonenumber_field",
+    'phonenumber_field',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -35,7 +36,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'app.urls'
+ROOT_URLCONF = 'referral_app.urls'
 
 TEMPLATES = [
     {
@@ -53,7 +54,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'app.wsgi.application'
+WSGI_APPLICATION = 'referral_app.wsgi.application'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = "/"
@@ -65,7 +66,7 @@ DATABASES = {
     )
 }
 
-AUTH_USER_MODEL = "app.Profile"
+AUTH_USER_MODEL = "referral_app.Profile"
 
 AUTH_PASSWORD_VALIDATORS = [
     {

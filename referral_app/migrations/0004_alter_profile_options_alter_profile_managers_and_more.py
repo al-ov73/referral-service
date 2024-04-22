@@ -10,7 +10,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0003_alter_profile_phone_alter_profile_ref_code'),
+        ('referral_app', '0003_alter_profile_phone_alter_profile_ref_code'),
         ('auth', '0012_alter_user_first_name_max_length'),
     ]
 

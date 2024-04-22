@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0002_alter_profile_ref_code'),
+        ('referral_app', '0002_alter_profile_ref_code'),
     ]
 
     operations = [

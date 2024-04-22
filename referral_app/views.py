@@ -3,9 +3,11 @@ from django.contrib import messages
 from django.views import View
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
+from rest_framework import generics
 
-from app.forms import CreateUserForm
-from app.models import Profile
+from referral_app.forms import CreateUserForm
+from referral_app.models import Profile
+from referral_app.serializers import ProfileSerializer
 
 
 class LoginUser(LoginView):
@@ -23,7 +25,6 @@ class ProfileFormCreateView(CreateView):
 
     def get(self, request, *args, **kwargs):
         form = CreateUserForm()
-        print(form)
         return render(
             request,
             'index.html',
@@ -32,27 +33,12 @@ class ProfileFormCreateView(CreateView):
 
     def post(self, request, *args, **kwargs):
         form = CreateUserForm(request.POST)
-        print(form)
         if form.is_valid():
-            print('VALID FORM!!')
-            form.save()
-            # if settings.LOCAL_DEBUG:
-            #     name_mail = (
-            #         f'{profile.user.first_name} {profile.user.last_name}'
-            #     )
-            #     send_mail_to_newuser.delay(name_mail)
-            #     messages.add_message(
-            #         request, messages.SUCCESS,
-            #         'Вам был отправлен Email'
-            #     )
-            messages.add_message(
-                request, messages.SUCCESS,
-                'User registered successfully'
-            )
-            return redirect('login')
-        messages.add_message(
-            request, messages.SUCCESS, 'Enter correct data'
-        )
+            # user = Profile.objects.create(**form.cleaned_data)
+            user = form.save()
+            id = user.id
+            return redirect(f'{id}/show/', {'user': form})
+
         return render(
             request, 'index.html', {'form': form}
         )
@@ -61,6 +47,7 @@ class ProfileFormCreateView(CreateView):
 class ProfileShowView(View):
 
     def get(self, request, *args, **kwargs):
+        print('check', kwargs)
         profile_id = kwargs.get('pk')
         profile = Profile.objects.get(id=profile_id)
         return render(
@@ -70,3 +57,7 @@ class ProfileShowView(View):
                 'profile': profile,
             }
         )
+
+class ProfileAPIView(generics.ListAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
