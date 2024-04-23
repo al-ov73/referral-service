@@ -1,14 +1,12 @@
 from django.contrib.auth.views import LoginView
-from django.contrib import messages
 from django.views import View
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 from rest_framework import generics
-from rest_framework.response import Response
 
 from referral_app.forms import CreateUserForm
 from referral_app.models import Profile
-from referral_app.serializers import ProfileSerializer
+from referral_app.api.serializers import ProfileSerializer
 
 
 class LoginUser(LoginView):

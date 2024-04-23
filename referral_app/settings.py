@@ -24,6 +24,8 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'phonenumber_field',
     'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -37,6 +39,14 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'referral_app.urls'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 
 TEMPLATES = [
     {
@@ -56,6 +66,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'referral_app.wsgi.application'
 
+# LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = "/"
 

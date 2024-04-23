@@ -1,11 +1,10 @@
-from django.contrib import admin
-from django.urls import path
+from django.urls import path, include, re_path
 
-from referral_app import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('login/', views.LoginUser.as_view(), name='login'),
-    path('<int:pk>/show/', views.ProfileAPIView.as_view(), name='users_show'),
-    path('', views.ProfileFormCreateView.as_view(), name='index'),
+
+    path('api/v1/auth/', include('djoser.urls'), name='login'),
+    re_path(r'^auth/', include('djoser.urls.authtoken')),
+    path('api/v1/', include('referral_app.api.router')),
+    # path('', include('rest_framework.urls')),
 ]
