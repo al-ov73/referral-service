@@ -5,5 +5,5 @@ from .models import Profile
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ('phone', 'ref_code')
+        fields = ('__all__')
 

@@ -9,12 +9,11 @@ from django.contrib.auth.models import User
 #
 
 class Profile(AbstractUser):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = PhoneNumberField(unique=True)
     ref_code = models.CharField(default=get_random_string(8), unique=True)
 
     USERNAME_FIELD = "phone"
-    # REQUIRED_FIELDS = ('phone',)
+    REQUIRED_FIELDS = []
 
     def __str__(self):
         return self.phone

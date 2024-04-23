@@ -4,6 +4,7 @@ from django.views import View
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 from rest_framework import generics
+from rest_framework.response import Response
 
 from referral_app.forms import CreateUserForm
 from referral_app.models import Profile
@@ -34,7 +35,6 @@ class ProfileFormCreateView(CreateView):
     def post(self, request, *args, **kwargs):
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            # user = Profile.objects.create(**form.cleaned_data)
             user = form.save()
             id = user.id
             return redirect(f'{id}/show/', {'user': form})
@@ -57,6 +57,7 @@ class ProfileShowView(View):
                 'profile': profile,
             }
         )
+
 
 class ProfileAPIView(generics.ListAPIView):
     queryset = Profile.objects.all()
