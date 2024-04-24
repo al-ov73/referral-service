@@ -1,12 +1,13 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 
-from referral_app.api.views import UserView
+from referral_app.api import views
 
 router = DefaultRouter(trailing_slash=True)
 
 urlpatterns = router.urls
 
 urlpatterns.extend([
-    path('users/<int:pk>', UserView.as_view()),
+    path('users/<int:pk>/send_ref', views.ReferralSend.as_view()),
+    path('users/<int:pk>', views.UserView.as_view()),
 ])

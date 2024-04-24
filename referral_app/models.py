@@ -26,6 +26,8 @@ class Profile(AbstractUser):
     username = None
     phone = PhoneNumberField(unique=True)
     ref_code = models.CharField(default=get_random_string(8), unique=True)
+    ref_received = models.ManyToManyField('self', related_name='referrals', symmetrical=False, blank=True, null=True)
+    ref_active = models.BooleanField(default=True)
 
     objects = ProfileManager()
 
@@ -35,6 +37,6 @@ class Profile(AbstractUser):
     def __str__(self):
         return self.phone
 
-class ReferralRegistry(models.Model):
-    in_id = models.IntegerField()
-    out_id = models.IntegerField(unique=True)
+# class ReferralRegistry(models.Model):
+#     in_id = models.IntegerField()
+#     out_id = models.IntegerField(unique=True)
