@@ -11,7 +11,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'webserver',
+    '127.0.0.1',
+    '0.0.0.0',
+    'localhost',
+    '[::1]',
+    'referral-service.onrender.com',
+]
 
 INSTALLED_APPS = [
     # 'django.contrib.admin',
