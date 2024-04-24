@@ -17,9 +17,11 @@ class ReferralSend(generics.GenericAPIView):
     def post(self, request, *args, **kwargs):
         received_ref_code = request.data.get('ref')
         send_from_id = kwargs.get('pk')
+        send_from = Profile.objects.get(id=send_from_id)
+        if not send_from.ref_active:
+            return Response('You already used your referral code')
         try:
             send_to = Profile.objects.get(ref_code=received_ref_code)
-            send_from = Profile.objects.get(id=send_from_id)
             send_to.ref_received.add(send_from)
             send_from.ref_active = False
             send_from.save()

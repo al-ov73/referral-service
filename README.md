@@ -5,11 +5,11 @@
 Описание API:
 
 1. Создание пользователя
-POST http://127.0.0.1:8000/api/v1/auth/users/
+POST https://referral-service.onrender.com/api/v1/auth/users/
 В body следует указать поля "phone" и "password"
 <br><br>
 2. Аутентификация пользователя<br>
-POST http://127.0.0.1:8000/auth/token/login/ <br>
+POST https://referral-service.onrender.com/auth/token/login/ <br>
 В body следует указать поля "phone" и "password"
 В Response вернется JSON-строка с токеном
 ```commandline
@@ -19,7 +19,7 @@ POST http://127.0.0.1:8000/auth/token/login/ <br>
 ```
 
 3. Страница профиля<br>
-GET http://127.0.0.1:8000/api/v1/users/<id_профиля> <br>
+GET https://referral-service.onrender.com/api/v1/users/<id_профиля> <br>
 В headers запроса необходимо указать поле
 ```commandline
 Authorization = Token 2740cfeb0...68083ffd6a8
@@ -39,5 +39,5 @@ Authorization = Token 2740cfeb0...68083ffd6a8
 ```
 
 4. Отправка реферального кода другого пользователя<br>
-POST http://127.0.0.1:8000/api/v1/users/<id_профиля>/send_ref <br>
+POST https://referral-service.onrender.com/api/v1/users/<id_профиля>/send_ref <br>
 id пользователя, который отпавил код, привязывается к профилю полуателя в поле "ref_received"
