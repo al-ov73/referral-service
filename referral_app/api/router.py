@@ -8,6 +8,6 @@ router = DefaultRouter(trailing_slash=True)
 urlpatterns = router.urls
 
 urlpatterns.extend([
-    path('users/<int:pk>/send_ref', views.ReferralSend.as_view()),
-    path('users/<int:pk>', views.UserView.as_view()),
+    path('api/v1/users/<int:pk>/send_ref', views.ReferralSend.as_view()),
+    path('api/v1/users/<int:pk>', views.UserView.as_view()),
 ])
