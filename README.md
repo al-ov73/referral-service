@@ -1,6 +1,14 @@
 Реферальная система с авторизацией по номеру телефона.
 Пользователю при авторизации присваивается 6-значный код, который могут вводить другие пользователи.
 
+Для разворачивания сервиса в Docker:
+```
+git clone git@github.com:al-ov73/referral-service.git
+cd referral-service
+docker compose -f docker-compose.yml build
+docker compose -f docker-compose.yml up
+```
+
 [Коллекция в Postman](https://www.postman.com/al-ov73/workspace/public-workspace/collection/31495401-2d5aeac5-cff9-4f58-ad9d-8cc8ac1ff5be?action=share&creator=31495401)<br><br>
 Описание API:
 

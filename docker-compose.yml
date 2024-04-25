@@ -1,0 +1,30 @@
+version: '3.8'
+
+volumes:
+  pgdata:
+
+services:
+
+  django:
+    build:
+      context: .
+    ports:
+      - '8000:8000'
+    container_name: django-ref
+    network_mode: host
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    command: sh -c "python manage.py makemigrations &&
+                    python manage.py migrate --fake &&
+                    python manage.py runserver 0.0.0.0:8000"
+
+  postgres:
+    image: postgres:alpine
+    container_name: postgres-ref
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
